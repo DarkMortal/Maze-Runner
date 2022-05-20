@@ -19,7 +19,9 @@ int main(int numbers,char** args){
     try{
         Event evt;
         RenderWindow window(VideoMode(level*CELLWIDTH,level*CELLWIDTH),"Maze Generator",Style::Close);
-        GridInit(level,window);
+        RenderTexture texture; 
+        texture.create(level*CELLWIDTH,level*CELLWIDTH);
+        GridInit(level,texture);
         Cell current = grid[0], previous(0,0);
         grid[index(current.getX(),current.getY(),level)].isActive = true;
         grid[index(current.getX(),current.getY(),level)].isVisited = true;
@@ -28,6 +30,9 @@ int main(int numbers,char** args){
                 if(evt.type == evt.Closed){
                     window.close();
                     cout<<"Window Closed"<<endl;
+                    Image img = texture.getTexture().copyToImage();
+                    img.saveToFile("./Maze.png");
+                    cout<<"Image exported Successfully"<<endl;
                     return EXIT_SUCCESS;
                 }
             }
@@ -53,16 +58,15 @@ int main(int numbers,char** args){
                     grid[index(current.getX(),current.getY(),level)].isActive = true;
                     stack.pop_back();
                 }
-            } else{
-                if(!isFinal){
-                    grid[0].isActive = false;
-                    cout<<"Maze generation complete"<<endl;
-                    isFinal = true;
-                }
+            } else if(!isFinal){
+                grid[0].isActive = false;
+                cout<<"Maze generation complete"<<endl;
+                isFinal = true;
             }
             usleep(50000);
             window.clear();
-            DrawGrid(window);
+            DrawGrid(texture);
+            window.draw(Sprite(texture.getTexture()));
             window.display();
         }
     }catch(exception exc){

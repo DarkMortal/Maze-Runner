@@ -16,7 +16,7 @@ int index(int i,int j,int n){
 }
 
 //TODO: Initializes the Grid
-void GridInit(int n,RenderWindow& w){
+void GridInit(int n,RenderTexture& w){
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
             Cell x = Cell(i,j);
@@ -30,7 +30,7 @@ void GridInit(int n,RenderWindow& w){
     }
 }
 
-void DrawGrid(RenderWindow& win){
+void DrawGrid(RenderTexture& win){
     for(int i=0;i<grid.size();i++) grid[i].drawCell(win);
 }
 

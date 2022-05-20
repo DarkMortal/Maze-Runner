@@ -17,12 +17,12 @@ class Cell{
             isVisited=isActive=false;
             isLeft=isBottom=isRight=isTop=true;
         }
-        void drawCell(RenderWindow&);
+        void drawCell(RenderTexture&);
         int getX() const { return posX; }
         int getY() const { return posY; }
 };
 
-void Cell::drawCell(RenderWindow& window){
+void Cell::drawCell(RenderTexture& window){
     RectangleShape cell(cellSize);
     if(isActive) cell.setFillColor(activeCell);
     else cell.setFillColor((isVisited)?visited:unvisited);
