@@ -9,6 +9,7 @@ std::vector<Cell> stack;
 int main(int numbers,char** args){
     char mode = args[1][0];
     int level = 0;
+    bool isFinal = false;
     switch(mode){
         case '1': level = EASY; break;
         case '2': level = MEDIUM; break;
@@ -51,6 +52,12 @@ int main(int numbers,char** args){
                     grid[index(previous.getX(),previous.getY(),level)].isActive = false;
                     grid[index(current.getX(),current.getY(),level)].isActive = true;
                     stack.pop_back();
+                }
+            } else{
+                if(!isFinal){
+                    grid[0].isActive = false;
+                    cout<<"Maze generation complete"<<endl;
+                    isFinal = true;
                 }
             }
             usleep(50000);
