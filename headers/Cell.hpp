@@ -6,7 +6,7 @@
 using namespace sf;
 
 const int size = 35,borderWidth = 3;
-const Vector2f cellSize(size+borderWidth,size+borderWidth), borderSize(size+borderWidth,borderWidth);
+const Vector2f cellSize(CELLWIDTH,CELLWIDTH), borderSize(CELLWIDTH,borderWidth);
 const Color unvisited = Color::Magenta, visited = Color::White, activeCell = Color::Blue, borderColor = Color::Black;
 
 class Cell{
