@@ -66,6 +66,7 @@ int main(int numbers,char** args){
             usleep(50000);
             window.clear();
             DrawGrid(texture);
+            texture.display();
             window.draw(Sprite(texture.getTexture()));
             window.display();
         }
