@@ -27,7 +27,7 @@ int main(int numbers,char** args){
         grid[index(current.getX(),current.getY(),level)].isVisited = true;
         while(window.isOpen()){
             while(window.pollEvent(evt)){
-                if(evt.type == evt.Closed){
+                if(evt.type == Event::Closed){
                     window.close();
                     cout<<"Window Closed"<<endl;
                     Image img = texture.getTexture().copyToImage();
